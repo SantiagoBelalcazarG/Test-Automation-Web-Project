@@ -1,0 +1,20 @@
+# Maven
+target/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Mac
+.DS_Store
+
+# Logs
+*.log
+
+# WebDriver binaries
+*.exe
