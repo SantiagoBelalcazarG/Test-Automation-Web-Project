@@ -38,6 +38,14 @@ public class InventoryPage extends BasePage {
         click(addToCartButtons.get(randomId));
     }
 
+    public void addFirstThreeProductsToCart() {
+        waitForAllVisible(addToCartButtons);
+
+        for (int i = 0; i < 3; i++) {
+            click(addToCartButtons.get(i));
+        }
+    }
+
     public CartPage goCart(){
         click(shoppingCartButton);
 
