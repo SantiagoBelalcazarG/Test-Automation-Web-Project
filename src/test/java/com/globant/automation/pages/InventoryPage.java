@@ -1,12 +1,10 @@
 package com.globant.automation.pages;
 
 import com.globant.automation.utils.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.Random;
@@ -21,6 +19,12 @@ public class InventoryPage extends BasePage {
 
     @FindBys(@FindBy(css = "button.btn_inventory"))
     private List<WebElement> addToCartButtons;
+
+    @FindBy(id = "react-burger-menu-btn")
+    private WebElement menuButton;
+
+    @FindBy(id = "logout_sidebar_link")
+    private WebElement logoutButton;
 
     public InventoryPage(WebDriver driver) {
         super(driver);
@@ -50,6 +54,16 @@ public class InventoryPage extends BasePage {
         click(shoppingCartButton);
 
         return new CartPage(driver);
+    }
+
+    public LoginPage logout(){
+        click(menuButton);
+
+        waitForVisibility(logoutButton);
+
+        click(logoutButton);
+
+        return new LoginPage(driver);
     }
 
 }

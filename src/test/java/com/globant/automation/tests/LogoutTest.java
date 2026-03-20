@@ -1,6 +1,5 @@
 package com.globant.automation.tests;
 
-import com.globant.automation.pages.CartPage;
 import com.globant.automation.pages.InventoryPage;
 import com.globant.automation.pages.LoginPage;
 import com.globant.automation.utils.BaseTest;
@@ -8,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class RemoveProductTest extends BaseTest {
+public class LogoutTest extends BaseTest {
 
     private LoginPage loginPage;
     private InventoryPage inventoryPage;
@@ -20,19 +19,13 @@ public class RemoveProductTest extends BaseTest {
         inventoryPage = loginPage.login(username, password);
     }
 
-    @Test(testName = "Verify remove flow for products")
-    public void removeProductsFlowTest(){
+    @Test(testName = "Verify logout flow for users")
+    public void logoutFlowTest(){
         Assert.assertEquals(inventoryPage.inventoryPage(), "Products");
 
-        inventoryPage.addFirstThreeProductsToCart();
+        LoginPage returnedLoginPage = inventoryPage.logout();
 
-        CartPage cartPage = inventoryPage.goCart();
-
-        Assert.assertEquals(cartPage.cartPage(), "Your Cart");
-        Assert.assertEquals(cartPage.cartItemsCount(), 3);
-
-        cartPage.removeProducts();
-
-        Assert.assertTrue(cartPage.isCartEmpty(), "The cart should be empty after removing all products.");
+        Assert.assertTrue(returnedLoginPage.isLoginDisplayed(), "User should be redirected to login page");
     }
+
 }
